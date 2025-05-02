@@ -52,7 +52,7 @@ function renderTodo(id, newTodoValue, isDone = false) {
   // create children
   const newTodoItem = createTodoItemElement(nextId);
   const checkbox = createCheckbox(nextId, isDone);
-  const label = createLabel(nextId, newTodoValue);
+  const label = createLabel(nextId, newTodoValue, isDone);
   const formCheckDiv = createFormCheckDiv(checkbox, label);
   const deleteButton = createDeleteButton(nextId);
 
@@ -101,9 +101,12 @@ function createCheckbox(id, isDone) {
   return input;
 }
 
-function createLabel(id, text) {
+function createLabel(id, text, isDone) {
   const label = document.createElement("label");
   label.classList.add("form-check-label");
+  if (isDone) {
+    label.classList.add("text-decoration-line-through");
+  }
   label.setAttribute("for", id);
   label.textContent = text;
   return label;
